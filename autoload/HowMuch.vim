@@ -60,6 +60,12 @@ function! HowMuch#errMsg(msg)
   return printf( '[HowMuch Error] %s',  a:msg)
 endfunction
 
+"============================
+" Remove leading and trailing whitespace
+"============================
+function! HowMuch#strip(input_string)
+    return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
+endfunction
 
 "============================
 " Validate user's engine list
@@ -147,7 +153,7 @@ endfunction
 "           engine to calculate the result.  If the value is 'auto', it will try engines
 "           (also follow the order) defined in g:HowMuch_auto_engines
 "============================
-function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
+function! HowMuch#HowMuch(isAppend, withEq, sum, avg, engineType) range
 
   "if do sum in wrong mode, reject
   if a:sum && visualmode() ==# 'v'
@@ -181,17 +187,22 @@ function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
     let exps = map(exps, "v:val . repeat(' ', max_len-len(v:val))")
   endif
 
+  let expr_count = 0
   for i in range(len(exps))
+    if HowMuch#strip(exps[i]) == ""
+      continue
+    endif
     try
       "using a tmp value to store modified expression (to float)
       let e       = HowMuch#to_float(exps[i])
       call HowMuch#debug("after to_float:", e)
       let result  = g:HowMuch_engine_map[tolower(a:engineType)](e)
       let has_err = has_err>0? has_err : (result == 'Err'? 1:0)
-      if !has_err && a:sum
+      if a:sum || a:avg
         call HowMuch#debug('before adding to total, result:', result)
         call HowMuch#debug('result type:', type(result))
         let total +=  str2float(result)
+        let expr_count += 1
         call HowMuch#debug('after adding total, total:', string(total))
       endif
     catch /.*/	
@@ -207,17 +218,28 @@ function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
     endtry
   endfor
 
-  if a:sum
-    if has_err
-     unlet total
-     let total = 'Err' 
-    endif
-    "let total = has_err>0 ? 'Err': total
+  if a:sum || a:avg
     call add(exps,repeat('-',max_len +2 ))
+  endif
+  
+  if a:sum
+    let output_sum = total
+    let output_sum = has_err>0 ? 'Err': total
     if a:isAppend
-      call add(exps,'Sum' . repeat(' ', max_len-3). (a:withEq?' = ':' ' ) . (type(total)==type("") ? total : string(total)) )
+      call add(exps,'Sum' . repeat(' ', max_len-3). (a:withEq?' = ':' ' ) . (type(output_sum)==type("") ? output_sum : string(output_sum)) )
     else
-      call add(exps,'Sum: ' .  (type(total)==type("") ? total : string(total) ))
+      call add(exps,'Sum: ' .  (type(output_sum)==type("") ? output_sum : string(output_sum) ))
+    endif
+  endif
+
+  if a:avg
+    let total = total / expr_count
+    if a:isAppend
+      call add(exps,'Count' . repeat(' ', max_len-3). (a:withEq?' = ':' ' ) . (type(expr_count)==type("") ? expr_count : string(expr_count)) )
+      call add(exps,'Avg' . repeat(' ', max_len-3). (a:withEq?' = ':' ' ) . (type(total)==type("") ? total : string(total)) )
+    else
+      call add(exps,'Count: ' .  (type(expr_count)==type("") ? expr_count : string(expr_count) ))
+      call add(exps,'Avg: ' .  (type(total)==type("") ? total : string(total) ))
     endif
   endif
 
@@ -226,7 +248,13 @@ function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
   let v_save = @v
   call setreg('v',s,visualmode())
   "add two empty lines if sum is true
+  if a:sum || a:avg
+    exec a:lastline.'pu _'
+  endif
   if a:sum
+    exec a:lastline.'pu _'
+  endif
+  if a:avg
     exec a:lastline.'pu _'
     exec a:lastline.'pu _'
   endif
@@ -234,6 +262,7 @@ function! HowMuch#HowMuch(isAppend, withEq, sum, engineType) range
   normal! gv"vp
   "restore the register (v) original value
   let @v = v_save
+  redraw!
 endfunction
 
 "============================

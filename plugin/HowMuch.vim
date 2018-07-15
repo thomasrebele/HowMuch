@@ -35,42 +35,54 @@ command! -range -nargs=* HowMuch call HowMuch#DoWithCommand(<q-args>)
 
 "<Plug> mappings for auto engine
 "{{{
-vnoremap <silent><unique> <Plug>AutoCalcReplace            :call HowMuch#HowMuch(0,0,0,'auto')<cr>
-vnoremap <silent><unique> <Plug>AutoCalcReplaceWithSum     :call HowMuch#HowMuch(0,0,1,'auto')<cr>
-vnoremap <silent><unique> <Plug>AutoCalcAppend             :call HowMuch#HowMuch(1,0,0,'auto')<cr>
-vnoremap <silent><unique> <Plug>AutoCalcAppendWithEq       :call HowMuch#HowMuch(1,1,0,'auto')<cr>
-vnoremap <silent><unique> <Plug>AutoCalcAppendWithSum      :call HowMuch#HowMuch(1,0,1,'auto')<cr>
-vnoremap <silent><unique> <Plug>AutoCalcAppendWithEqAndSum :call HowMuch#HowMuch(1,1,1,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcReplace            :call HowMuch#HowMuch(0,0,0,0,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcReplaceWithSum     :call HowMuch#HowMuch(0,0,1,0,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcReplaceWithAvg     :call HowMuch#HowMuch(0,0,1,1,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcAppend             :call HowMuch#HowMuch(1,0,0,0,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcAppendWithEq       :call HowMuch#HowMuch(1,1,0,0,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcAppendWithSum      :call HowMuch#HowMuch(1,0,1,0,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcAppendWithAvg      :call HowMuch#HowMuch(1,0,1,1,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcAppendWithEqAndSum :call HowMuch#HowMuch(1,1,1,0,'auto')<cr>
+vnoremap <silent><unique> <Plug>AutoCalcAppendWithEqAndAvg :call HowMuch#HowMuch(1,1,1,1,'auto')<cr>
 "}}}
 
 "<Plug> mappings for bc engine
 "{{{
-vnoremap <silent><unique> <Plug>BcCalcReplace              :call HowMuch#HowMuch(0,0,0,'bc')<cr>
-vnoremap <silent><unique> <Plug>BcCalcReplaceWithSum       :call HowMuch#HowMuch(0,0,1,'bc')<cr>
-vnoremap <silent><unique> <Plug>BcCalcAppend               :call HowMuch#HowMuch(1,0,0,'bc')<cr>
-vnoremap <silent><unique> <Plug>BcCalcAppendWithEq         :call HowMuch#HowMuch(1,1,0,'bc')<cr>
-vnoremap <silent><unique> <Plug>BcCalcAppendWithSum        :call HowMuch#HowMuch(1,0,1,'bc')<cr>
-vnoremap <silent><unique> <Plug>BcCalcAppendWithEqAndSum   :call HowMuch#HowMuch(1,1,1,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcReplace              :call HowMuch#HowMuch(0,0,0,0,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcReplaceWithSum       :call HowMuch#HowMuch(0,0,1,0,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcReplaceWithAvg       :call HowMuch#HowMuch(0,0,1,1,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcAppend               :call HowMuch#HowMuch(1,0,0,0,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcAppendWithEq         :call HowMuch#HowMuch(1,1,0,0,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcAppendWithSum        :call HowMuch#HowMuch(1,0,1,0,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcAppendWithAvg        :call HowMuch#HowMuch(1,0,1,1,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcAppendWithEqAndSum   :call HowMuch#HowMuch(1,1,1,0,'bc')<cr>
+vnoremap <silent><unique> <Plug>BcCalcAppendWithEqAndAvg   :call HowMuch#HowMuch(1,1,1,1,'bc')<cr>
 "}}}
 
 "<Plug> mappings for vim engine
 "{{{
-vnoremap <silent><unique> <Plug>VimCalcReplace             :call HowMuch#HowMuch(0,0,0,'vim')<cr>
-vnoremap <silent><unique> <Plug>VimCalcReplaceWithSum      :call HowMuch#HowMuch(0,0,1,'vim')<cr>
-vnoremap <silent><unique> <Plug>VimCalcAppend              :call HowMuch#HowMuch(1,0,0,'vim')<cr>
-vnoremap <silent><unique> <Plug>VimCalcAppendWithEq        :call HowMuch#HowMuch(1,1,0,'vim')<cr>
-vnoremap <silent><unique> <Plug>VimCalcAppendWithSum       :call HowMuch#HowMuch(1,0,1,'vim')<cr>
-vnoremap <silent><unique> <Plug>VimCalcAppendWithEqAndSum  :call HowMuch#HowMuch(1,1,1,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcReplace             :call HowMuch#HowMuch(0,0,0,0,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcReplaceWithSum      :call HowMuch#HowMuch(0,0,1,0,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcReplaceWithAvg      :call HowMuch#HowMuch(0,0,1,1,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcAppend              :call HowMuch#HowMuch(1,0,0,0,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcAppendWithEq        :call HowMuch#HowMuch(1,1,0,0,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcAppendWithSum       :call HowMuch#HowMuch(1,0,1,0,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcAppendWithAvg       :call HowMuch#HowMuch(1,0,1,1,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcAppendWithEqAndSum  :call HowMuch#HowMuch(1,1,1,0,'vim')<cr>
+vnoremap <silent><unique> <Plug>VimCalcAppendWithEqAndAvg  :call HowMuch#HowMuch(1,1,1,1,'vim')<cr>
 "}}}
 
 "<Plug> mappings for python engine
 "{{{
-vnoremap <silent><unique> <Plug>PyCalcReplace              :call HowMuch#HowMuch(0,0,0,'py')<cr>
-vnoremap <silent><unique> <Plug>PyCalcReplaceWithSum       :call HowMuch#HowMuch(0,0,1,'py')<cr>
-vnoremap <silent><unique> <Plug>PyCalcAppend               :call HowMuch#HowMuch(1,0,0,'py')<cr>
-vnoremap <silent><unique> <Plug>PyCalcAppendWithEq         :call HowMuch#HowMuch(1,1,0,'py')<cr>
-vnoremap <silent><unique> <Plug>PyCalcAppendWithSum        :call HowMuch#HowMuch(1,0,1,'py')<cr>
-vnoremap <silent><unique> <Plug>PyCalcAppendWithEqAndSum   :call HowMuch#HowMuch(1,1,1,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcReplace              :call HowMuch#HowMuch(0,0,0,0,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcReplaceWithSum       :call HowMuch#HowMuch(0,0,1,0,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcReplaceWithAvg       :call HowMuch#HowMuch(0,0,1,1,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcAppend               :call HowMuch#HowMuch(1,0,0,0,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcAppendWithEq         :call HowMuch#HowMuch(1,1,0,0,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcAppendWithSum        :call HowMuch#HowMuch(1,0,1,0,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcAppendWithAvg        :call HowMuch#HowMuch(1,0,1,1,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcAppendWithEqAndSum   :call HowMuch#HowMuch(1,1,1,0,'py')<cr>
+vnoremap <silent><unique> <Plug>PyCalcAppendWithEqAndAvg   :call HowMuch#HowMuch(1,1,1,1,'py')<cr>
 "}}}
 
 "===========================================================
@@ -83,6 +95,9 @@ endif
 if !hasmapto('<Plug>AutoCalcReplaceWithSum','v')
   vmap <leader><leader>?s <Plug>AutoCalcReplaceWithSum
 endif
+if !hasmapto('<Plug>AutoCalcReplaceWithAvg','v')
+  vmap <leader><leader>?a <Plug>AutoCalcReplaceWithAvg
+endif
 if !hasmapto('<Plug>AutoCalcAppend','v')
   vmap <leader>? <Plug>AutoCalcAppend
 endif
@@ -94,9 +109,15 @@ endif
 if !hasmapto('<Plug>AutoCalcAppendWithSum','v')
   vmap  <leader>?s <Plug>AutoCalcAppendWithSum
 endif
+if !hasmapto('<Plug>AutoCalcAppendWithAvg','v')
+  vmap  <leader>?a <Plug>AutoCalcAppendWithAvg
+endif
 
 if !hasmapto('<Plug>AutoCalcAppendWithEqAndSum','v')
   vmap  <leader>?=s <Plug>AutoCalcAppendWithEqAndSum
+endif"}}}
+if !hasmapto('<Plug>AutoCalcAppendWithEqAndAvg','v')
+  vmap  <leader>?=a <Plug>AutoCalcAppendWithEqAndAvg
 endif"}}}
 
 "default mappings for bc
@@ -107,6 +128,9 @@ endif
 
 if !hasmapto('<Plug>BcCalcReplaceWithSum','v')
   vmap  <leader><leader>b?s <Plug>BcCalcReplaceWithSum
+endif
+if !hasmapto('<Plug>BcCalcReplaceWithAvg','v')
+  vmap  <leader><leader>b?a <Plug>BcCalcReplaceWithAvg
 endif
 
 if !hasmapto('<Plug>BcCalcAppend','v')
@@ -120,9 +144,15 @@ endif
 if !hasmapto('<Plug>BcCalcAppendWithSum','v')
   vmap  <leader>b?s <Plug>BcCalcAppendWithSum
 endif
+if !hasmapto('<Plug>BcCalcAppendWithAvg','v')
+  vmap  <leader>b?a <Plug>BcCalcAppendWithAvg
+endif
 
 if !hasmapto('<Plug>BcCalcAppendWithEqAndSum','v')
   vmap  <leader>b?=s <Plug>BcCalcAppendWithEqAndSum
+endif"}}}
+if !hasmapto('<Plug>BcCalcAppendWithEqAndAvg','v')
+  vmap  <leader>b?=a <Plug>BcCalcAppendWithEqAndAvg
 endif"}}}
 
 "default mappings for vim
@@ -133,6 +163,9 @@ endif
 
 if !hasmapto('<Plug>VimCalcReplaceWithSum','v')
   vmap  <leader><leader>v?s <Plug>VimCalcReplaceWithSum
+endif
+if !hasmapto('<Plug>VimCalcReplaceWithAvg','v')
+  vmap  <leader><leader>v?a <Plug>VimCalcReplaceWithAvg
 endif
 
 if !hasmapto('<Plug>VimCalcAppend','v')
@@ -146,9 +179,15 @@ endif
 if !hasmapto('<Plug>VimCalcAppendWithSum','v')
   vmap  <leader>v?s <Plug>VimCalcAppendWithSum
 endif
+if !hasmapto('<Plug>VimCalcAppendWithAvg','v')
+  vmap  <leader>v?a <Plug>VimCalcAppendWithAvg
+endif
 
 if !hasmapto('<Plug>VimCalcAppendWithEqAndSum','v')
   vmap  <leader>v?=s <Plug>VimCalcAppendWithEqAndSum
+endif
+if !hasmapto('<Plug>VimCalcAppendWithEqAndAvg','v')
+  vmap  <leader>v?=a <Plug>VimCalcAppendWithEqAndAvg
 endif
 
 "}}}
@@ -162,6 +201,9 @@ endif
 if !hasmapto('<Plug>PyCalcReplaceWithSum','v')
   vmap  <leader><leader>p?s <Plug>PyCalcReplaceWithSum
 endif
+if !hasmapto('<Plug>PyCalcReplaceWithAvg','v')
+  vmap  <leader><leader>p?a <Plug>PyCalcReplaceWithAvg
+endif
 
 if !hasmapto('<Plug>PyCalcAppend','v')
   vmap  <leader>p? <Plug>PyCalcAppend
@@ -174,9 +216,15 @@ endif
 if !hasmapto('<Plug>PyCalcAppendWithSum','v')
   vmap  <leader>p?s <Plug>PyCalcAppendWithSum
 endif
+if !hasmapto('<Plug>PyCalcAppendWithAvg','v')
+  vmap  <leader>p?a <Plug>PyCalcAppendWithAvg
+endif
 
 if !hasmapto('<Plug>PyCalcAppendWithEqAndSum','v')
   vmap  <leader>p?=s <Plug>PyCalcAppendWithEqAndSum
+endif
+if !hasmapto('<Plug>PyCalcAppendWithEqAndAvg','v')
+  vmap  <leader>p?=a <Plug>PyCalcAppendWithEqAndAvg
 endif
 "}}}
 

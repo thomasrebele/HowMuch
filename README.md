@@ -36,7 +36,7 @@
 - Supports two output formats: 
 	- append result with/out `=` after the expression 
 	- replace the selected expressions with result
-- Supports sum total result in line-(`V`) and block-wise (`Ctrl-V`)selection
+- Calculates the sum and average of the total result in block-wise (`Ctrl-V`)selection
 - You can create custom mapping to invoke `HowMuch`
 - *Evaluation "Engines"* (The expression evaluator)
 	- `HowMuch` supports `GNU bc`, `python` and `native vim` expressions evaluation engines,
